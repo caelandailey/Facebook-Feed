@@ -35,7 +35,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width,height: 200)
+        return CGSize(width: view.frame.width,height: 300)
     }
 
 }
@@ -89,18 +89,32 @@ class FeedCell: UICollectionViewCell {
         return textView
     }()
     
+    var statusImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "zuckdog")
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        return imageView
+    }()
+    
     func setupViews() {
         backgroundColor = UIColor.white
         
         addSubview(nameLabel)
         addSubview(profileImageView)
         addSubview(statusTextView)
+        addSubview(statusImageView)
+        
         
         addContraintsWithFormat("H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
         
+        addContraintsWithFormat("H:|-4-[v0]-4-|", views: statusTextView)
+        
+        addContraintsWithFormat("H:|[v0]|", views: statusImageView)
+        
         addContraintsWithFormat("V:|-12-[v0]", views: nameLabel)
         
-        addContraintsWithFormat("V:|-8-[v0(44)]", views: profileImageView)
+        addContraintsWithFormat("V:|-8-[v0(44)]-4-[v1(30)]-4-[v2]|", views: profileImageView, statusTextView, statusImageView)
      
     }
 }
