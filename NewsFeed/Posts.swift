@@ -79,7 +79,7 @@ class Posts {
         "told me that Barack Obama’s birth certificate is a fraud."
         postDonaldTrump.statusImageUrl = "https://s3-us-west-2.amazonaws.com/letsbuildthatapp/trump_background.jpg"
         
-        postsList = [postMark, postSteve, postGandhi, postBillGates, postTimCook, postDonaldTrump]
+        postsList = [postDonaldTrump, postGandhi, postSteve, postBillGates, postTimCook, postMark]
         
     }
     

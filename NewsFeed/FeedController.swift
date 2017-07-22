@@ -15,6 +15,8 @@ let posts = Posts()
 
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,6 +24,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let diskCapacity = 500 * 1024 * 1024
         let urlCache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
         URLCache.shared = urlCache
+        
         
         navigationItem.title = "Facebook Feed"
         

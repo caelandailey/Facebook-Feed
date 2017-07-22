@@ -39,19 +39,16 @@ class FeedCell: UICollectionViewCell {
                 profileImageView.image = UIImage(named: profileImagename)
             }
             
-            
-            //            if let statusImageName = post?.statusImageName {
-            //                statusImageView.image = UIImage(named: statusImageName)
-            //            }
-            
             if let statusImageUrl = post?.statusImageUrl {
+                
+                
                 
                 let url = URL(string: statusImageUrl)
                 URLSession.shared.dataTask(with: url!, completionHandler: {
                     (data, repsonse, error) -> Void in
                     
                     if error != nil {
-                        print(error)
+                        print(error as Any)
                         return
                     }
                     
@@ -93,7 +90,6 @@ class FeedCell: UICollectionViewCell {
     var profileImageView: UIImageView = {
         
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "zuckprofile")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -101,7 +97,6 @@ class FeedCell: UICollectionViewCell {
     
     var statusTextView: UITextView = {
         let textView = UITextView()
-        textView.text = "Meanwhile, Beast turned to the dark side."
         textView.font = UIFont.systemFont(ofSize: 14)
         textView.isScrollEnabled = false
         return textView
@@ -109,7 +104,6 @@ class FeedCell: UICollectionViewCell {
     
     var statusImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "zuckdog")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         return imageView
@@ -156,7 +150,7 @@ class FeedCell: UICollectionViewCell {
         addSubview(commentButton)
         addSubview(shareButton)
         
-        
+        setupStatusImageViewLoader()
         
         addContraintsWithFormat("H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
         
