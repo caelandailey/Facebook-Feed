@@ -10,33 +10,104 @@ import UIKit
 
 let cellId = "cellId"
 
+class Post {
+    var name: String?
+    var statusText: String?
+    var profileImageName: String?
+    var numLikes: Int?
+    var numComments: Int?
+    var statusImageName: String?
+}
+
+var posts = [Post]()
+
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+//        let postMark = Post()
+//        postMark.name = "Mark Zuckerberg"
+//        postMark.statusText = "Meanwhile, Beast turned to the dark side."
+//        postMark.profileImageName = "zuckprofile"
+//        let postSteve = Post()
+//        postSteve.name = "Steve Jobs"
+//        postSteve.statusText = "Design is not just what it looks like. Design is how it works. Being the richest man in the cemetry doesnt matter to me. Going to bed at night saying we've done something wonderful that's what matters to me."
+//        postSteve.profileImageName = "steve_profile"
+//        posts.append(postSteve)
+//        posts.append(postMark)
+        
+        let postMark = Post()
+        postMark.name = "Mark Zuckerberg"
+        
+        
+        postMark.profileImageName = "zuckprofile"
+        postMark.statusText = "By giving people the power to share, we're making the world more transparent."
+        postMark.statusImageName = "zuckdog"
+        postMark.numLikes = 400
+        postMark.numComments = 123
+        
+        let postSteve = Post()
+        postSteve.name = "Steve Jobs"
+        
+        postSteve.profileImageName = "steve_profile"
+        postSteve.statusText = "Design is not just what it looks like and feels like. Design is how it works.\n\n" +
+            "Being the richest man in the cemetery doesn't matter to me. Going to bed at night saying we've done something wonderful, that's what matters to me.\n\n" +
+        "Sometimes when you innovate, you make mistakes. It is best to admit them quickly, and get on with improving your other innovations."
+        postSteve.statusImageName = "steve_status"
+        postSteve.numLikes = 1000
+        postSteve.numComments = 55
+        
+        let postGandhi = Post()
+        postGandhi.name = "Mahatma Gandhi"
+        
+        postGandhi.profileImageName = "gandhi_profile"
+        postGandhi.statusText = "Live as if you were to die tomorrow; learn as if you were to live forever.\n" +
+            "The weak can never forgive. Forgiveness is the attribute of the strong.\n" +
+        "Happiness is when what you think, what you say, and what you do are in harmony."
+        postGandhi.statusImageName = "gandhi_status"
+        postGandhi.numLikes = 333
+        postGandhi.numComments = 22
+        
+        
+        posts.append(postMark)
+        posts.append(postSteve)
+        posts.append(postGandhi)
+        
         navigationItem.title = "Facebook Feed"
         
         collectionView?.backgroundColor = UIColor(white:0.95, alpha: 1.0)
         
+        collectionView?.alwaysBounceVertical = true
+        
         collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
-        
-        
-        
         
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return posts.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let feedCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FeedCell
+        
+        feedCell.post = posts[indexPath.item]
+        
+        return feedCell
     }
     
     // CELL HEIGHT
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width,height: 400)
+        if let statusText = posts[indexPath.item].statusText {
+            let rect = NSString(string: statusText).boundingRect(with: CGSize(width: view.frame.width, height: 1000), options: NSStringDrawingOptions.usesFontLeading.union(NSStringDrawingOptions.usesLineFragmentOrigin), attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)], context: nil)
+            
+            let knownHeight: CGFloat = 8 + 44 + 4 + 4 + 200 + 8 + 24 + 8 + 44;
+            
+            return CGSize(width: view.frame.width, height: rect.height + knownHeight + 16)
+        }
+        return CGSize(width: view.frame.width,height: 500)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -48,8 +119,43 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
 }
 
 class FeedCell: UICollectionViewCell {
+    
+    var post: Post? {
+        didSet {
+            if let name = post?.name {
+                let attributedText = NSMutableAttributedString(string: name, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14)])
+                
+                attributedText.append(NSAttributedString(string: "\nDecember 18 • San Francisco • ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12), NSForegroundColorAttributeName: UIColor.rgb(155, green: 161, blue: 171)]))
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.lineSpacing = 4
+                
+                attributedText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedText.string.characters.count))
+                
+                let attachment = NSTextAttachment()
+                attachment.image = UIImage(named: "globe_small")
+                attachment.bounds = CGRect(x: 0, y: -2,width: 12,height: 12)
+                attributedText.append(NSAttributedString(attachment: attachment))
+                
+                nameLabel.attributedText = attributedText
+            }
+            
+            if let statusText = post?.statusText {
+                statusTextView.text = statusText
+            }
+            
+            if let profileImagename = post?.profileImageName {
+                profileImageView.image = UIImage(named: profileImagename)
+            }
+            
+            if let statusImageName = post?.statusImageName {
+                statusImageView.image = UIImage(named: statusImageName)
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame:frame)
+        
         
         setupViews()
     }
@@ -61,20 +167,7 @@ class FeedCell: UICollectionViewCell {
     var nameLabel: UILabel = { // note the equal operator here
         let label = UILabel()
         label.numberOfLines = 2
-        let attributedText = NSMutableAttributedString(string: "Mark Zuckerberg", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14)])
         
-        attributedText.append(NSAttributedString(string: "\nDecember 18 • San Francisco • ", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 12), NSForegroundColorAttributeName: UIColor.rgb(155, green: 161, blue: 171)]))
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 4
-        
-        attributedText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, attributedText.string.characters.count))
-        
-        let attachment = NSTextAttachment()
-        attachment.image = UIImage(named: "globe_small")
-        attachment.bounds = CGRect(x: 0, y: -2,width: 12,height: 12)
-        attributedText.append(NSAttributedString(attachment: attachment))
-        
-        label.attributedText = attributedText
         return label
     }() // note the invocation of the block here
     
@@ -93,6 +186,7 @@ class FeedCell: UICollectionViewCell {
         let textView = UITextView()
         textView.text = "Meanwhile, Beast turned to the dark side."
         textView.font = UIFont.systemFont(ofSize: 14)
+        textView.isScrollEnabled = false
         return textView
     }()
     
@@ -145,6 +239,8 @@ class FeedCell: UICollectionViewCell {
         addSubview(commentButton)
         addSubview(shareButton)
         
+       
+        
         addContraintsWithFormat("H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
         
         addContraintsWithFormat("H:|-4-[v0]-4-|", views: statusTextView)
@@ -160,7 +256,7 @@ class FeedCell: UICollectionViewCell {
         
         addContraintsWithFormat("V:|-12-[v0]", views: nameLabel)
         
-        addContraintsWithFormat("V:|-8-[v0(44)]-4-[v1(30)]-4-[v2]-8-[v3(24)]-8-[v4(0.4)][v5(40)]|", views: profileImageView, statusTextView, statusImageView, likesCommentsLabel, dividerLineView, likeButton)
+        addContraintsWithFormat("V:|-8-[v0(44)]-4-[v1]-4-[v2(200)]-8-[v3(24)]-8-[v4(0.4)][v5(40)]|", views: profileImageView, statusTextView, statusImageView, likesCommentsLabel, dividerLineView, likeButton)
      
         addContraintsWithFormat("V:[v0(44)]|", views: commentButton)
         addContraintsWithFormat("V:[v0(44)]|", views: shareButton)
