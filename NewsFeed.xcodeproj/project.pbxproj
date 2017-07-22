@@ -14,6 +14,8 @@
 		388EDE3A1F23BD3E00BCD166 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388EDE391F23BD3E00BCD166 /* FeedCell.swift */; };
 		388EDE3C1F23BD4C00BCD166 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388EDE3B1F23BD4C00BCD166 /* Extensions.swift */; };
 		388EDE3E1F23BD5800BCD166 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388EDE3D1F23BD5800BCD166 /* Posts.swift */; };
+		388EDE401F23FF6000BCD166 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388EDE3F1F23FF6000BCD166 /* CustomTabBarController.swift */; };
+		388EDE421F24016800BCD166 /* FriendRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388EDE411F24016800BCD166 /* FriendRequestController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		388EDE391F23BD3E00BCD166 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		388EDE3B1F23BD4C00BCD166 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		388EDE3D1F23BD5800BCD166 /* Posts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
+		388EDE3F1F23FF6000BCD166 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomTabBarController.swift; path = ../CustomTabBarController.swift; sourceTree = "<group>"; };
+		388EDE411F24016800BCD166 /* FriendRequestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendRequestController.swift; path = ../FriendRequestController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 		388EDE241F1BDCF200BCD166 /* NewsFeed */ = {
 			isa = PBXGroup;
 			children = (
+				388EDE411F24016800BCD166 /* FriendRequestController.swift */,
+				388EDE3F1F23FF6000BCD166 /* CustomTabBarController.swift */,
 				388EDE251F1BDCF200BCD166 /* AppDelegate.swift */,
 				388EDE271F1BDCF200BCD166 /* FeedController.swift */,
 				388EDE371F1BFC6200BCD166 /* Assets.xcassets */,
@@ -144,7 +150,9 @@
 			files = (
 				388EDE281F1BDCF200BCD166 /* FeedController.swift in Sources */,
 				388EDE261F1BDCF200BCD166 /* AppDelegate.swift in Sources */,
+				388EDE401F23FF6000BCD166 /* CustomTabBarController.swift in Sources */,
 				388EDE3E1F23BD5800BCD166 /* Posts.swift in Sources */,
+				388EDE421F24016800BCD166 /* FriendRequestController.swift in Sources */,
 				388EDE3A1F23BD3E00BCD166 /* FeedCell.swift in Sources */,
 				388EDE3C1F23BD4C00BCD166 /* Extensions.swift in Sources */,
 			);

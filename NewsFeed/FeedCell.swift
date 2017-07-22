@@ -152,25 +152,25 @@ class FeedCell: UICollectionViewCell {
         
         setupStatusImageViewLoader()
         
-        addContraintsWithFormat("H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
+        addConstraintsWithFormat("H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
         
-        addContraintsWithFormat("H:|-4-[v0]-4-|", views: statusTextView)
+        addConstraintsWithFormat("H:|-4-[v0]-4-|", views: statusTextView)
         
-        addContraintsWithFormat("H:|[v0]|", views: statusImageView)
+        addConstraintsWithFormat("H:|[v0]|", views: statusImageView)
         
-        addContraintsWithFormat("H:|-12-[v0]|", views: likesCommentsLabel)
+        addConstraintsWithFormat("H:|-12-[v0]|", views: likesCommentsLabel)
         
-        addContraintsWithFormat("H:|-12-[v0]-12-|", views: dividerLineView)
+        addConstraintsWithFormat("H:|-12-[v0]-12-|", views: dividerLineView)
         
         //Button constraints
-        addContraintsWithFormat("H:|[v0(v2)][v1(v2)][v2]|", views: likeButton, commentButton,shareButton)
+        addConstraintsWithFormat("H:|[v0(v2)][v1(v2)][v2]|", views: likeButton, commentButton,shareButton)
         
-        addContraintsWithFormat("V:|-12-[v0]", views: nameLabel)
+        addConstraintsWithFormat("V:|-12-[v0]", views: nameLabel)
         
-        addContraintsWithFormat("V:|-8-[v0(44)]-4-[v1]-4-[v2(200)]-8-[v3(24)]-8-[v4(0.4)][v5(40)]|", views: profileImageView, statusTextView, statusImageView, likesCommentsLabel, dividerLineView, likeButton)
+        addConstraintsWithFormat("V:|-8-[v0(44)]-4-[v1]-4-[v2(200)]-8-[v3(24)]-8-[v4(0.4)][v5(40)]|", views: profileImageView, statusTextView, statusImageView, likesCommentsLabel, dividerLineView, likeButton)
         
-        addContraintsWithFormat("V:[v0(44)]|", views: commentButton)
-        addContraintsWithFormat("V:[v0(44)]|", views: shareButton)
+        addConstraintsWithFormat("V:[v0(44)]|", views: commentButton)
+        addConstraintsWithFormat("V:[v0(44)]|", views: shareButton)
     }
     
     let loader = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -180,8 +180,8 @@ class FeedCell: UICollectionViewCell {
         loader.startAnimating()
         loader.color = UIColor.black
         statusImageView.addSubview(loader)
-        statusImageView.addContraintsWithFormat("H:|[v0]|", views: loader)
-        statusImageView.addContraintsWithFormat("V:|[v0]|", views: loader)
+        statusImageView.addConstraintsWithFormat("H:|[v0]|", views: loader)
+        statusImageView.addConstraintsWithFormat("V:|[v0]|", views: loader)
     }
     
 }
