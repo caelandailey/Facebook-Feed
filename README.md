@@ -8,3 +8,4 @@ Facebook news feed clone
 - Load Images Asynchronously and Caching
 - Tab menu
 - Image Zooming Animation
+- Does not use storyboards
