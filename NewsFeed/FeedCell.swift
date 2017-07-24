@@ -11,6 +11,13 @@ import UIKit
 
 class FeedCell: UICollectionViewCell {
     
+    var feedController: FeedController?
+    
+    
+    func animate() {
+        feedController?.animateImageView(statusImageView: statusImageView)
+    }
+    
     var post: Post? {
         didSet {
             
@@ -106,6 +113,7 @@ class FeedCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -149,6 +157,8 @@ class FeedCell: UICollectionViewCell {
         addSubview(likeButton)
         addSubview(commentButton)
         addSubview(shareButton)
+        
+        statusImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(FeedCell.animate as (FeedCell) -> () -> ())))
         
         setupStatusImageViewLoader()
         
