@@ -9,3 +9,7 @@ Facebook news feed clone
 - Tab menu
 - Image Zooming Animation
 - Does not use storyboards
+
+<img src="https://github.com/caelandailey/Facebook-Feed/blob/master/preview/fb1.png" width=400><img src="https://github.com/caelandailey/Facebook-Feed/blob/master/preview/fb2.png" width=400>
+<img src="https://github.com/caelandailey/Facebook-Feed/blob/master/preview/fb3.png" width=400><img src="https://github.com/caelandailey/Facebook-Feed/blob/master/preview/fb4.png" width=400>
+
