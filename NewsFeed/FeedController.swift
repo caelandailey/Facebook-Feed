@@ -9,14 +9,10 @@
 import UIKit
 
 let cellId = "cellId"
-
-
 let posts = Posts()
 
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,7 +20,6 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let diskCapacity = 500 * 1024 * 1024
         let urlCache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
         URLCache.shared = urlCache
-        
         
         navigationItem.title = "Facebook Feed"
         
@@ -90,7 +85,6 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             navBarCoverView.backgroundColor = UIColor.black
             navBarCoverView.alpha = 0
             
-            
             if let keyWindow =  UIApplication.shared.keyWindow  {
                 keyWindow.addSubview(navBarCoverView)
                 
@@ -122,8 +116,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 self.tabBarCoverView.alpha = 1
                 self.navBarCoverView.alpha = 1
             })
-        }
-        
+        }  
     }
     
     func zoomOut() {
@@ -144,7 +137,6 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
            })
         }
     }
-
 }
 
 
