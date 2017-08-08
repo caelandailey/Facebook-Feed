@@ -8,7 +8,7 @@
 
 import UIKit
 
-let cellId = "ceelId"
+let cellId = "cellId"
 
 
 let posts = Posts()
